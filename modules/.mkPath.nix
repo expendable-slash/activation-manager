@@ -12,7 +12,6 @@ let
     ;
 
   pathModule =
-    defaultPrefix:
     {
       name,
       config,
@@ -36,20 +35,13 @@ let
           description = "Destination path";
           default = name;
         };
-
-        prefix = mkOption {
-          type = types.str;
-          description = "Prefix to prepend to destination path";
-          default = defaultPrefix;
-        };
       };
     };
 
   mkPathOption =
-    defaultPrefix:
     mkOption {
       default = { };
-      type = types.attrsOf (types.submodule (pathModule defaultPrefix));
+      type = types.attrsOf (types.submodule (pathModule));
     };
 
   mkPathConfig =
@@ -64,7 +56,7 @@ let
         mkdir -p $out
 
         ${lib.concatMapStringsSep "\n" (value: ''
-          destFile="$out/${value.prefix}${value.destination}"
+          destFile="$out/${value.destination}"
           destDir="$(dirname "$destFile")"
           mkdir -p "$destDir"
           ln -vsfT ${value.source} "$destFile"
