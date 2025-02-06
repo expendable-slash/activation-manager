@@ -1,0 +1,258 @@
+error:
+       … while calling the 'derivationStrict' builtin
+         at <nix/derivation-internal.nix>:34:12:
+           33|
+           34|   strict = derivationStrict drvAttrs;
+             |            ^
+           35|
+
+       … while evaluating derivation 'home'
+         whose name attribute is located at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/stdenv/generic/make-derivation.nix:375:7
+
+       … while evaluating attribute 'passAsFile' of derivation 'home'
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/build-support/trivial-builders/default.nix:60:9:
+           59|         inherit buildCommand name;
+           60|         passAsFile = [ "buildCommand" ]
+             |         ^
+           61|           ++ (derivationArgs.passAsFile or [ ]);
+
+       … while evaluating the attribute 'passAsFile'
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/build-support/buildenv/default.nix:114:9:
+          113|         # XXX: The size is somewhat arbitrary
+          114|         passAsFile = if builtins.stringLength pkgs >= 128 * 1024 then [ "pkgs" ] else [ ];
+             |         ^
+          115|       }
+
+       … while evaluating a branch condition
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/build-support/buildenv/default.nix:114:22:
+          113|         # XXX: The size is somewhat arbitrary
+          114|         passAsFile = if builtins.stringLength pkgs >= 128 * 1024 then [ "pkgs" ] else [ ];
+             |                      ^
+          115|       }
+
+       … in the argument of the not operator
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/build-support/buildenv/default.nix:114:52:
+          113|         # XXX: The size is somewhat arbitrary
+          114|         passAsFile = if builtins.stringLength pkgs >= 128 * 1024 then [ "pkgs" ] else [ ];
+             |                                                    ^
+          115|       }
+
+       … while calling the 'lessThan' builtin
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/build-support/buildenv/default.nix:114:52:
+          113|         # XXX: The size is somewhat arbitrary
+          114|         passAsFile = if builtins.stringLength pkgs >= 128 * 1024 then [ "pkgs" ] else [ ];
+             |                                                    ^
+          115|       }
+
+       … while calling the 'stringLength' builtin
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/build-support/buildenv/default.nix:114:25:
+          113|         # XXX: The size is somewhat arbitrary
+          114|         passAsFile = if builtins.stringLength pkgs >= 128 * 1024 then [ "pkgs" ] else [ ];
+             |                         ^
+          115|       }
+
+       … while calling the 'toJSON' builtin
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/build-support/buildenv/default.nix:109:16:
+          108|           ;
+          109|         pkgs = builtins.toJSON chosenOutputs;
+             |                ^
+          110|         extraPathsFrom = lib.optional includeClosures (writeClosure pathsForClosure);
+
+       … while evaluating list element at index 2
+
+       … while evaluating attribute 'paths'
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/build-support/buildenv/default.nix:69:7:
+           68|     chosenOutputs = map (drv: {
+           69|       paths =
+             |       ^
+           70|         # First add the usual output(s): respect if user has chosen explicitly,
+
+       … while evaluating a branch condition
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/build-support/buildenv/default.nix:75:11:
+           74|         (
+           75|           if
+             |           ^
+           76|             (!drv ? outputSpecified || !drv.outputSpecified) && drv.meta.outputsToInstall or null != null
+
+       … in the left operand of the AND (&&) operator
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/build-support/buildenv/default.nix:76:62:
+           75|           if
+           76|             (!drv ? outputSpecified || !drv.outputSpecified) && drv.meta.outputsToInstall or null != null
+             |                                                              ^
+           77|           then
+
+       … in the left operand of the OR (||) operator
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/build-support/buildenv/default.nix:76:37:
+           75|           if
+           76|             (!drv ? outputSpecified || !drv.outputSpecified) && drv.meta.outputsToInstall or null != null
+             |                                     ^
+           77|           then
+
+       … in the argument of the not operator
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/pkgs/build-support/buildenv/default.nix:76:15:
+           75|           if
+           76|             (!drv ? outputSpecified || !drv.outputSpecified) && drv.meta.outputsToInstall or null != null
+             |               ^
+           77|           then
+
+       … from call site
+         at /nix/store/q8g7h18pzd31xrpbysynkla9lsli6kak-source/flake.nix:29:14:
+           28|             # to home directory
+           29|             (activation-manager.lib.home-bundle {
+             |              ^
+           30|               inherit pkgs;
+
+       … while calling 'home-bundle'
+         at /nix/store/qkrz75kpz4lapmcb850brdcl823rz45m-source/default.nix:19:19:
+           18|     __functor = _: eval;
+           19|     home-bundle = args: (eval args).config.bin.activate;
+             |                   ^
+           20|   };
+
+       … while evaluating the attribute 'config.bin.activate'
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:334:9:
+          333|         options = checked options;
+          334|         config = checked (removeAttrs config [ "_module" ]);
+             |         ^
+          335|         _module = checked (config._module);
+
+       … while calling the 'seq' builtin
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:334:18:
+          333|         options = checked options;
+          334|         config = checked (removeAttrs config [ "_module" ]);
+             |                  ^
+          335|         _module = checked (config._module);
+
+       … while evaluating a branch condition
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:273:9:
+          272|       checkUnmatched =
+          273|         if config._module.check && config._module.freeformType == null && merged.unmatchedDefns != [] then
+             |         ^
+          274|           let
+
+       … in the right operand of the AND (&&) operator
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:273:72:
+          272|       checkUnmatched =
+          273|         if config._module.check && config._module.freeformType == null && merged.unmatchedDefns != [] then
+             |                                                                        ^
+          274|           let
+
+       … while evaluating the attribute 'unmatchedDefns'
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:695:7:
+          694|       # Transforms unmatchedDefnsByName into a list of definitions
+          695|       unmatchedDefns =
+             |       ^
+          696|         if configs == []
+
+       … while calling the 'concatLists' builtin
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:702:11:
+          701|         else
+          702|           concatLists (mapAttrsToList (name: defs:
+             |           ^
+          703|             map (def: def // {
+
+       … while calling anonymous lambda
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/attrsets.nix:1095:10:
+         1094|     attrs:
+         1095|     map (name: f name attrs.${name}) (attrNames attrs);
+             |          ^
+         1096|
+
+       … from call site
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/attrsets.nix:1095:16:
+         1094|     attrs:
+         1095|     map (name: f name attrs.${name}) (attrNames attrs);
+             |                ^
+         1096|
+
+       … while calling anonymous lambda
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:702:46:
+          701|         else
+          702|           concatLists (mapAttrsToList (name: defs:
+             |                                              ^
+          703|             map (def: def // {
+
+       … while calling the 'map' builtin
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:703:13:
+          702|           concatLists (mapAttrsToList (name: defs:
+          703|             map (def: def // {
+             |             ^
+          704|               # Set this so we know when the definition first left unmatched territory
+
+       … from call site
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/attrsets.nix:1095:23:
+         1094|     attrs:
+         1095|     map (name: f name attrs.${name}) (attrNames attrs);
+             |                       ^
+         1096|
+
+       … while calling anonymous lambda
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:688:22:
+          687|         # Propagate all unmatched definitions from nested option sets
+          688|         mapAttrs (n: v: v.unmatchedDefns) resultsByName
+             |                      ^
+          689|         # Plus the definitions for the current prefix that don't have a matching option
+
+       … from call site
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:688:25:
+          687|         # Propagate all unmatched definitions from nested option sets
+          688|         mapAttrs (n: v: v.unmatchedDefns) resultsByName
+             |                         ^
+          689|         # Plus the definitions for the current prefix that don't have a matching option
+
+       … while calling anonymous lambda
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:636:39:
+          635|
+          636|       resultsByName = mapAttrs (name: decls:
+             |                                       ^
+          637|         # We're descending into attribute ‘name’.
+
+       … while evaluating a branch condition
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:650:11:
+          649|         in
+          650|           if length optionDecls == length decls then
+             |           ^
+          651|             let opt = fixupOptionType loc (mergeOptionDecls loc decls);
+
+       … while calling the 'length' builtin
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:650:14:
+          649|         in
+          650|           if length optionDecls == length decls then
+             |              ^
+          651|             let opt = fixupOptionType loc (mergeOptionDecls loc decls);
+
+       … while calling the 'filter' builtin
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:642:25:
+          641|           defns' = rawDefinitionsByName.${name} or [];
+          642|           optionDecls = filter
+             |                         ^
+          643|             (m: m.options?_type
+
+       … while calling anonymous lambda
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:643:14:
+          642|           optionDecls = filter
+          643|             (m: m.options?_type
+             |              ^
+          644|                 && (m.options._type == "option"
+
+       … in the left operand of the AND (&&) operator
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:644:17:
+          643|             (m: m.options?_type
+          644|                 && (m.options._type == "option"
+             |                 ^
+          645|                     || throwDeclarationTypeError loc m.options._type m._file
+
+       … while evaluating the attribute 'options'
+         at /nix/store/k8nkf470zpidpa5nh76lh2x6rxfzpwa4-source/lib/modules.nix:566:82:
+          565|                   (n: option:
+          566|                     [{ inherit (module) _file; pos = unsafeGetAttrPos n subtree; options = option; }]
+             |                                                                                  ^
+          567|                   )
+
+       error: attempt to call something which is not a function but a set: { _type = "option"; type = «thunk»; default = «thunk»; }
+       at /nix/store/qkrz75kpz4lapmcb850brdcl823rz45m-source/modules/path.nix:10:12:
+            9|   options = {
+           10|     path = mkPathOption "";
+             |            ^
+           11|   };
+
